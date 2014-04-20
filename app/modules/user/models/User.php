@@ -5,12 +5,11 @@
  * Date: 4/17/14
  * Time: 9:58 PM
  */
-
 class User extends \Eloquent {
 
     protected $table = 'users';
     protected $guarded = array('id');
-    protected $hidden = array('first_name', 'last_name', 'email', 'password', 'birthday', 'avatar');
+    protected $hidden = array('first_name', 'last_name', 'email', 'password', 'birthday', 'avatar','group_id');
 
     protected $softDelete = true;
 
@@ -22,9 +21,5 @@ class User extends \Eloquent {
         'password' => 'required',
     );
 
-    public static function login($username, $password) {
-        var_dump($username);
-        var_dump($password);
-    }
 
 }

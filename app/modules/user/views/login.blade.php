@@ -5,6 +5,7 @@
 <h2 class="form-signin-heading">sign in now</h2>
 <div class="login-wrap">
     <div class="user-login-info">
+        {{ Monster::message() }}
         {{ Form::text('email', null, array('class' => 'form-control', 'id' => 'email', 'placeholder'=>'Email')) }}
         {{ Form::password('password', array('class' => 'form-control', 'name'=> 'password', 'placeholder'=>'Password', 'id'=> 'password')) }}
     </div>

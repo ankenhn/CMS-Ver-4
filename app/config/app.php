@@ -115,7 +115,10 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Illuminate\Remote\RemoteServiceProvider',
 
+		'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Creolab\LaravelModules\ServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
+        'Chumper\Datatable\DatatableServiceProvider',
 	),
 
 	/*
@@ -144,7 +147,7 @@ return array(
 
 	'aliases' => array(
 
-		'App'             => 'Illuminate\Support\Facades\App',
+        'App'             => 'Illuminate\Support\Facades\App',
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
 		'Auth'            => 'Illuminate\Support\Facades\Auth',
 		'Blade'           => 'Illuminate\Support\Facades\Blade',
@@ -181,7 +184,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-
+        'Monster'         =>  'Monster\Monster',
+        'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
 	),
 
 );

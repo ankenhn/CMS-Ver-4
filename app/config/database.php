@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'monster_db',
+			'database'  => 'efox_monster',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
