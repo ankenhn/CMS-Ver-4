@@ -10,7 +10,12 @@
 Route::get('login', array('as' => 'login' , 'uses' => 'App\\Modules\\User\\Controllers\\UserController@getLogin'));
 Route::post('login', array('as' => 'login', 'uses'=> 'App\\Modules\\User\\Controllers\\UserController@postLogin'));
 Route::group(array('prefix'=>'admin','namespace'=>'App\\Modules\\User\\Controllers\\Admin'),function() {
-    Route::get('dataTable', array('as' => 'dataTable' , 'uses' => 'UserController@getDataTable'));
-    Route::get('users', array('as' => 'users' , 'uses' => 'UserController@getList'));
-    Route::get('users/update', array('as' => 'update' , 'uses' => 'UserController@getUpdate'));
+    Route::controller('users', 'UserController', array(
+        'getList'           => 'admin.user.list',
+        'getDataTable'      => 'admin.user.dataTable',
+        'getDelete'         => 'admin.user.delete',
+        'getEdit'           => 'admin.user.edit',
+        'getCreate'         => 'admin.user.create',
+        'postUpdate'        => 'admin.user.update'
+    ));
 });

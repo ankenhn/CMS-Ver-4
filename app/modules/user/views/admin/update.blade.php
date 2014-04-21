@@ -2,13 +2,8 @@
 
 
 @section('content')
-    <div class="alert alert-error fade in">
-        <button type="button" class="close close-sm" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        <strong>Oh snap! Change a few things up and try submitting again.</strong>
-        <p</p>
-    </div>
+{{ Monster::message() }}
+{{ Form::open(array('url'=>route('admin.user.update'), 'id'=> 'validate')) }}
 
 <div class="row">
     <div class="col-lg-8">
@@ -26,10 +21,16 @@
                         <div class="form-group">
                             <label class="control-label col-lg-3" for="first_name">First Name</label>
                             <div class="col-lg-6">
-                                <input type="text" name="first_name" id="first_name" value="" class="form-control validate[required]" />
+                                {{ Form::text('first_name',Input::old('first_name', isset($user) ? $user->first_name : '' ), array('id' => 'first_name', 'class'=>'form-control validate[required]')) }}
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="control-label col-lg-3" for="first_name">Last Name</label>
+                            <div class="col-lg-6">
+                                {{ Form::text('last_name',Input::old('last_name', isset($user) ? $user->last_name : '' ), array('id' => 'last_name', 'class'=>'form-control validate[required]')) }}
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -121,9 +122,5 @@
         </div>
     </div>
 </div>
-
-
-<div id="mediaManager" class="modal fade" tabindex="-1">
-
-</div>
+{{ Form::close() }}
 @stop

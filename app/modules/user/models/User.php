@@ -8,7 +8,7 @@
 class User extends \Eloquent {
 
     protected $table = 'users';
-    protected $guarded = array('id');
+    protected $primaryKey = 'user_id';
     protected $hidden = array('first_name', 'last_name', 'email', 'password', 'birthday', 'avatar','group_id');
 
     protected $softDelete = true;
