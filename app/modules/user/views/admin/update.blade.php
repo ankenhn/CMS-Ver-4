@@ -25,6 +25,7 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-group">
                             <label class="control-label col-lg-3" for="first_name">Last Name</label>
                             <div class="col-lg-6">
@@ -32,6 +33,8 @@
                             </div>
                         </div>
 
+=======
+>>>>>>> 0d9045df9ad2f0d8d819b5b30a2e02f124b5c3cd
                     </div>
                 </div>
             </div>

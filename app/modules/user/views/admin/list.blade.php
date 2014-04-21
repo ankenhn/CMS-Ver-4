@@ -6,11 +6,8 @@
 <table class="table table-bordered flkLWVr9" id="table">
     <thead>
     <tr>
-        <th align="center" valign="middle" class="head1">Test</th>
-        <th align="center" valign="middle" class="head2">User</th>
-        <th align="center" valign="middle" class="head2">User test</th>
-        <th align="center" valign="middle" class="head2">Date</th>
-        <th align="center" valign="middle" class="head2">Action</th>
+        <th align="center" valign="middle" class="head1">ID</th>
+        <th align="center" valign="middle" class="head2">Email</th>
     </tr>
     </thead>
     <tbody>
