@@ -1,5 +1,5 @@
 <?php namespace Monster;
-use Illuminate\Support\Facades\Session, Config;
+use Illuminate\Support\Facades\Session, Config, Lang;
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com
@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\Session, Config;
  */
 
 class Monster {
+
+    public static function status($status) {
+        switch($status) {
+            case 0:
+                return '<span class="label  label-warning">'.Lang::get('monster.draft').'</span>';
+                break;
+            case 1:
+                return '<span class="label  label-success">'.Lang::get('monster.publish').'</span>';
+                break;
+            case 2:
+                return '<span class="label  label-info">'.Lang::get('monster.pendingReview').'</span>';
+                break;
+            default:
+                return '<span class="label  label-danger">'.Lang::get('monster.unknown').'</span>';
+                break;
+        }
+    }
 
     public static function set_message($message = '', $type ='',$isValidatorError = false,$headline = '') {
         if(is_array($message)) {
@@ -33,5 +50,6 @@ class Monster {
         $message = str_replace("{message}",Session::get('monster_message'),$message);
         return $message;
     }
+
 
 }

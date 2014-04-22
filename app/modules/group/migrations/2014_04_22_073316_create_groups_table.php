@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration {
             $table->increments('group_id');
             $table->string('group_name',50)->unique();
             $table->integer('status');
+            $table->integer('user_id');
             $table->timestamps();
             $table->softDeletes();
             //

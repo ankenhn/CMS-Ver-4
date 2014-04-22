@@ -13,4 +13,5 @@ Route::group(array('prefix'=>'admin','namespace'=>'App\\Modules\\Group\\Controll
     Route::get('group/create',        array('as'   =>  'admin.group.create',      'uses'  =>  'GroupController@getCreate'));
     Route::get('group/edit/{id}',     array('as'   =>  'admin.group.edit',        'uses'  =>  'GroupController@getEdit'));
     Route::post('group/update/{id?}', array('as'   =>  'admin.group.update',      'uses'  =>  'GroupController@postUpdate'));
+
 });

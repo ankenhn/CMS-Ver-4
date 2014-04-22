@@ -1,5 +1,5 @@
 <?php namespace App\Modules\User\Controllers;
-use App, View, Input, Illuminate\Support\Facades\Auth, Monster;
+use App, View, Input, Auth, Monster;
 use Illuminate\Support\Facades\Redirect, Hash;
 
 /**
@@ -19,7 +19,7 @@ class UserController extends \FrontendController {
         return View::make('user::login');
     }
     public function postLogin() {
-        if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'status'=>1))) {
+        if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'status'=>1),true)) {
             return Redirect::to('admin');
         }
         Monster::set_message('Email or password incorrect','error');

@@ -16,6 +16,16 @@ Route::group(array('prefix'=>'admin','namespace'=>'App\\Modules\\User\\Controlle
         'getDelete'         => 'admin.user.delete',
         'getEdit'           => 'admin.user.edit',
         'getCreate'         => 'admin.user.create',
-        'postUpdate'        => 'admin.user.update'
+        'postUpdate'        => 'admin.user.update',
+        'getProfile'        => 'admin.user.profile'
     ));
+});
+
+Route::group(array('prefix'=>'admin','namespace'=>'App\\Modules\\User\\Controllers\\Admin'),function() {
+    Route::get('user',                  array('as'   =>    'admin.user.list',        'uses'  =>  'UerController@getList'));
+    Route::get('user/dataTable',        array('as'   =>    'admin.user.dataTable',   'uses'  =>  'UerController@getDataTable'));
+    Route::get('user/profile/{id}',    array('as'   =>     'admin.user.profile',     'uses'  =>  'UerController@getProfile'));
+    Route::get('user/create',           array('as'   =>    'admin.user.create',      'uses'  =>  'UerController@getCreate'));
+    Route::get('user/edit/{id}',        array('as'   =>    'admin.user.edit',        'uses'  =>  'UerController@getEdit'));
+    Route::post('user/update/{id?}',    array('as'   =>    'admin.user.update',      'uses'  =>  'UerController@postUpdate'));
 });

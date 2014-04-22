@@ -15,7 +15,7 @@ class Group extends \Eloquent {
 
     protected $fillable = array('group_name','status');
 
-    protected $dates = array('created_at', 'updated_at','deleted_at');
+    //protected $dates = array('created_at', 'updated_at','deleted_at');
 
     protected $softDelete = true;
 

@@ -35,7 +35,7 @@
 
         <div class="panel">
             <section class="panel-heading">
-                Publish
+                {{ Lang::get('monster.publish') }}
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                 </span>
@@ -43,7 +43,7 @@
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="control-label col-xs-12"><span class="pull-left">Status</span></label>
+                        <label class="control-label col-xs-12"><span class="pull-left">{{ Lang::get('monster.status') }}</span></label>
                         <div class="col-xs-12">
                             {{ Form::select('status',array('0'=>'Draft', '2' => 'Pending Review', '1'=> 'Publish'),Input::old('last_name', isset($user) ? $user->last_name : '' ), array('id' => 'status', 'class'=> 'form-control validate[required]')) }}
 
@@ -52,25 +52,18 @@
 
                     <div class="form-group">
                         <label class="control-label col-xs-12">
-                            <span class="pull-left">
+                            <span class="pull-left">{{ Lang::get('monster.modifiedBy') }}: {{ User::name((isset($group) ? $group->user_id: ''),true); }}
                             </span>
                         </label>
                         <div class="col-xs-12">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-12">
-                            <span class="pull-left">
-                            </span>
-                        </label>
-                        <div class="col-xs-12">
+                           {{ Lang::get('monster.modifiedOn') }}: {{ isset($group) ? $group->updated_at->diffForHumans() : ''; }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            {{ HTML::link(route('admin.group.list'), 'Back To List', array('class' => 'btn')) }}
+                            <button type="submit" class="btn btn-primary">{{ Lang::get('group::monster.save') }}</button>
+                            {{ HTML::link(route('admin.group.list'), Lang::get('monster.backToList'), array('class' => 'btn btn-default')) }}
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@
 
             "sAjaxSource": "{{ route('dataTable') }}",
             "sPaginationType": "full_numbers",
-            "sDom": '<"datatable-header"Tfl><"datatable-scroll"t><"datatable-footer"ip>',
+            "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'T><'span6'p>>",
             "oLanguage": {
                 "sSearch": "<span>Filter:</span> _INPUT_",
                 "sLengthMenu": "<span>Show:</span> _MENU_",

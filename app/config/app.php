@@ -185,7 +185,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
         'Monster'         =>  'Monster\Monster',
-        'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
+        'Datatable'       => 'Chumper\Datatable\Facades\DatatableFacade',
 	),
 
 );

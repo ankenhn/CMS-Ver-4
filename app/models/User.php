@@ -11,13 +11,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'users';
+    protected $primaryKey = 'user_id';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('passwords');
+    protected $hidden = array('first_name', 'last_name', 'email', 'password', 'birthday', 'avatar','group_id');
+
+    public static $rules = array(
+        'first_name'=>'required|alpha|min:2|max:50',
+        'last_name'=>'required|alpha|min:2|max:50',
+        'email'    => 'required|email|unique:users',
+        'birthday'    => 'required|date',
+        'password' => 'required',
+    );
 
 	/**
 	 * Get the unique identifier for the user.
@@ -50,17 +59,37 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
     public function getRememberToken()
     {
-        return $this->remember_token;
+        return $this->token;
     }
 
     public function setRememberToken($value)
     {
-        $this->remember_token = $value;
+        $this->token = $value;
     }
 
     public function getRememberTokenName()
     {
-        return 'remember_token';
+        return 'token';
     }
 
+    public static function name($id =false,$anchor=false,$isAdmin=true) {
+        $user = parent::find($id);
+        $name =false;
+        if($user) {
+            $name = $user->first_name.' '.$user->last_name;
+        }
+        if(!$anchor) {
+            return $name;
+        }
+        else {
+            if($isAdmin AND $user) {
+                return HTML::link(route('admin.user.profile',array($user->user_id)),$name);
+            }
+            else {
+                return $name;
+                //return route('user.profile')
+            }
+        }
+        return false;
+    }
 }

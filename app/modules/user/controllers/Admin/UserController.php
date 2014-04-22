@@ -1,6 +1,6 @@
 <?php namespace App\Modules\User\Controllers\Admin;
 use Monster\Monster;
-use View, App\Modules\User\Models\User, Validator, Input, Session;
+use View, Validator, Input, Session;
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com
@@ -19,6 +19,10 @@ class UserController extends \FrontendController {
     }
     public function getList() {
         return View::make('user::admin.update');
+    }
+
+    public function getProfile($id) {
+        return 'profile';
     }
 
     public function getCreate() {

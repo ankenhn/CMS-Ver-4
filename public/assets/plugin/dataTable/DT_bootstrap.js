@@ -3,7 +3,8 @@ $.extend( true, $.fn.dataTable.defaults, {
 	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'T><'span6'p>>",
 	"sPaginationType": "bootstrap",
 	"oLanguage": {
-		"sLengthMenu": "_MENU_ records per page"
+		"sLengthMenu": "_MENU_ records per page",
+        "sSearch"   :   ""
 	}
 } );
 
@@ -117,7 +118,7 @@ if ( $.fn.DataTable.TableTools ) {
 		"container": "dataTables-tools btn-group",
 		"buttons": {
 			"normal": "btn btn-primary",
-			"disabled": "disabled"
+			"disabled": ""
 		},
 		"collection": {
 			"container": "DTTT_dropdown dropdown-menu",

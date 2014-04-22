@@ -1,7 +1,7 @@
 <?php namespace App\Modules\Group\Controllers\Admin;
 
 use App, Auth, View, Validator, Input, Monster, App\Modules\Group\Models\Group;
-use Illuminate\Support\Facades\HTML;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect,Datatable;
 
 /**
@@ -14,17 +14,19 @@ use Illuminate\Support\Facades\Redirect,Datatable;
 class GroupController extends \BackendController {
 
     public function __construct() {
-        $this->beforeFilter('csrf', array('on' => 'post'));
         parent::__construct();
     }
 
     public function getDataTable() {
         return Datatable::collection(Group::all())
-            ->showColumns('group_name','status')
+            ->showColumns('group_name')
             ->searchColumns('group_name')
             ->orderColumns('group_id','group_name')
-            ->addColumn('operations',function($model) {
-                return HTML::link(route('admin.group.edit',array($model->group_id)),'Edit',array('title' => 'Edit Item'));
+            ->addColumn('status',function($item) {
+                return Monster::status($item->status);
+            })
+            ->addColumn('action',function($item) {
+                return '<a href="'.route('admin.group.edit',array($item->group_id)).'" class="btn-sm btn-primary"><i class="fa fa-edit"></i> '.Lang::get('monster.edit').'</a>';
             })
             ->make();
     }
@@ -45,6 +47,7 @@ class GroupController extends \BackendController {
         if($this->checkValidator($id)) {
             $user = Group::firstOrNew(array('group_id'=>$id));
             $user->fill(Input::all());
+            $user->user_id = Auth::user()->user_id;
             $user->save();
             return Redirect::route('admin.group.edit',array($user->group_id));
         }

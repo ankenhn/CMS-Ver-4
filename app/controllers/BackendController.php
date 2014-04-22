@@ -8,6 +8,8 @@
 class BackendController extends BaseController {
 
     public function __construct() {
+        if(!Auth::check()) {
 
+        }
     }
 }

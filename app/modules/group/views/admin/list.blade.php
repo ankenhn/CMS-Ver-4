@@ -2,16 +2,34 @@
 
 
 @section('content')
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">{{Lang::get('group::monster.moduleManager')}}</header>
+            <div class="panel-body">
+                <section class="unseen">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="{{ route('admin.group.create') }}" class="btn btn-default btn-primary"><i class="fa fa-plus"></i> {{Lang::get('monster.addNew')}}</a>
+                        </div>
+                    </div>
 
-<table class="table table-bordered flkLWVr9" id="table">
-    <thead>
-    <tr>
-        <th>Group Name</th>
-        <th>Status</th>
-        <th></th>
-    </tr>
-    </thead>
-</table>
+                    <section class="adv-table" id="flip-scroll">
+                        <table class="table table-bordered table-striped table-condensed cf" id="table">
+                            <thead>
+                            <tr>
+                                <th>{{Lang::get('group::monster.groupName')}}</th>
+                                <th style="width:10em;">{{Lang::get('status')}}</th>
+                                <th style="width: 10em;"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </section>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>
 <script type="text/javascript">
     $( document ).ready(function() {
         oTable = $('#table').dataTable({
@@ -20,34 +38,12 @@
             "bServerSide": true,
 
             "sAjaxSource": "{{ route('admin.group.dataTable') }}",
-            "sPaginationType": "full_numbers",
-            "sDom": '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-            "oLanguage": {
-                "sSearch": "<span>Filter:</span> _INPUT_",
-                "sLengthMenu": "<span>Show:</span> _MENU_",
-                "oPaginate": { "sFirst": "First", "sLast": "Last", "sNext": ">", "sPrevious": "<" }
-            },
+            "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'T><'span6'p>>",
             "oTableTools": {
-                "sSwfPath": "/assets/media/swf/copy_csv_xls_pdf.swf",
-                "aButtons": [
-                    {
-                        "sExtends": "copy",
-                        "sButtonText": "Copy",
-                        "sButtonClass": "btn"
-                    },
-                    {
-                        "sExtends": "print",
-                        "sButtonText": "Print",
-                        "sButtonClass": "btn"
-                    },
-                    {
-                        "sExtends": "collection",
-                        "sButtonText": "Save <span class='caret'></span>",
-                        "sButtonClass": "btn btn-primary",
-                        "aButtons": [ "csv", "xls", "pdf" ]
-                    }
-                ]
+                "sRowSelect": "multi",
+                "aButtons": [ "select_btn", "KDelete"]
             }
+
         });
 
 
