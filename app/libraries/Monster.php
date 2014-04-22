@@ -9,7 +9,18 @@ use Illuminate\Support\Facades\Session, Config;
 
 class Monster {
 
-    public static function set_message($message = '', $type ='') {
+    public static function set_message($message = '', $type ='',$isValidatorError = false,$headline = '') {
+        if(is_array($message)) {
+            $message = implode("",$message);
+        }
+        $header = null;
+        if($isValidatorError == true) {
+            $header = '<p><strong>Oh snap! Change a few things up and try submitting again. </strong></p>';
+        }
+        if($headline!='') {
+            $header = '<p><strong>'.$headline.'</strong></p>';
+        }
+        $message = $header.$message;
         Session::flash('monster_message',$message);
         Session::flash('monster_message_class',$type);
     }
@@ -22,4 +33,5 @@ class Monster {
         $message = str_replace("{message}",Session::get('monster_message'),$message);
         return $message;
     }
+
 }

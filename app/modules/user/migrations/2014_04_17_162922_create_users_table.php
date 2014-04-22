@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
             $table->integer('group_id')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->string('password');
+            $table->text("token")->nullable();
             $table->timestamps();
             $table->softDeletes();
 			//

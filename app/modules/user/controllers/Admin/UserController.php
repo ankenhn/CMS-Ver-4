@@ -1,5 +1,6 @@
 <?php namespace App\Modules\User\Controllers\Admin;
-use View, User;
+use Monster\Monster;
+use View, App\Modules\User\Models\User, Validator, Input, Session;
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com
@@ -17,10 +18,26 @@ class UserController extends \FrontendController {
             ->make();
     }
     public function getList() {
-        return View::make('user::admin.list');
+        return View::make('user::admin.update');
     }
 
-    public function getUpdate() {
+    public function getCreate() {
         return View::make('user::admin.update');
+    }
+
+    public function getEdit($id = false) {
+        $user = User::find($id);
+        return View::make('user::admin.update')->with('user',$user);
+    }
+
+    public function postUpdate() {
+        $validator = Validator::make(Input::all(),User::$rules);
+        if ($validator->fails())
+        {
+            $messages = $validator->messages()->all('<p>:message</p>');
+            //Message::put('monster_validator_errors',$messages);
+            Monster::set_message($messages,'error',true);
+            // The given data did not pass validation
+        }
     }
 }
