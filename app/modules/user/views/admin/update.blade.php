@@ -25,7 +25,6 @@
                             </div>
                         </div>
 
-<<<<<<< HEAD
                         <div class="form-group">
                             <label class="control-label col-lg-3" for="first_name">Last Name</label>
                             <div class="col-lg-6">
@@ -33,8 +32,27 @@
                             </div>
                         </div>
 
-=======
->>>>>>> 0d9045df9ad2f0d8d819b5b30a2e02f124b5c3cd
+                        <div class="form-group">
+                            <label class="control-label col-lg-3" for="first_name">Email</label>
+                            <div class="col-lg-6">
+                                {{ Form::text('email',Input::old('email', isset($user) ? $user->email : '' ), array('id' => 'email', 'class'=>'form-control validate[required,custom[email]]')) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-3" for="first_name">Password</label>
+                            <div class="col-lg-6">
+                                {{ Form::text('password',null, array('id' => 'password', 'class'=>'form-control '.(!isset($user) ? 'validate[required]' : ''))) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-3" for="first_name">Password Confirm</label>
+                            <div class="col-lg-6">
+                                {{ Form::text('pass_confirm',null, array('id' => 'pass_confirm', 'class'=>'form-control validate[equals[password]]')) }}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

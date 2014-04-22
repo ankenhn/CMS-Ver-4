@@ -35,9 +35,7 @@ class UserController extends \FrontendController {
         if ($validator->fails())
         {
             $messages = $validator->messages()->all('<p>:message</p>');
-            //Message::put('monster_validator_errors',$messages);
             Monster::set_message($messages,'error',true);
-            // The given data did not pass validation
         }
     }
 }
