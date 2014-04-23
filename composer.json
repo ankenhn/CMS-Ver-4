@@ -11,8 +11,7 @@
 	},
 	"require-dev": {
 		"itsgoingd/clockwork": "dev-master",
-		"way/generators": "~2",
-        "davejamesmiller/laravel-breadcrumbs": "~2.2.0"
+		"way/generators": "~2"
 	},
 	"autoload": {
 		"classmap": [

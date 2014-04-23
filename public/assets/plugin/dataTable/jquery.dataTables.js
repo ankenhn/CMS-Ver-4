@@ -6363,6 +6363,7 @@
 		
 		
 		var _that = this;
+        DataTable.defaults.sAjaxSource = $(this).data('source');
 		this.each(function() {
 			var i=0, iLen, j, jLen, k, kLen;
 			var sId = this.getAttribute( 'id' );

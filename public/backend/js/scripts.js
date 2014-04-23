@@ -10,7 +10,7 @@
                 "aButtons": [ "select_btn" ,"KActive","KInactive", "KDelete"]
             }
         });
-        $('.kTable').dataTable( {
+        var kTable = $('.kTable').dataTable( {
             "bProcessing": true,
             "bServerSide": true,
             "oTableTools": {
@@ -18,6 +18,7 @@
                 "aButtons": [ "select_btn", "KDelete"]
             }
         });
+
 
         $('.kTableView').dataTable( {
             "bProcessing": true,

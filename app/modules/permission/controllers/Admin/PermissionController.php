@@ -1,7 +1,7 @@
-<?php namespace App\Modules\Group\Controllers\Admin;
+<?php namespace App\Modules\Permission\Controllers\Admin;
 
 use Auth, View, Lang, Monster, Datatable, Input, Validator;
-use  App\Modules\Group\Models\Group;
+use  App\Modules\Permission\Models\Permission;
 use Illuminate\Support\Facades\Redirect;
 
 /**
@@ -11,17 +11,17 @@ use Illuminate\Support\Facades\Redirect;
  * Time: 1:34 PM
  */
 
-class GroupController extends \BackendController {
+class PermissionController extends \BackendController {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function getDataTable() {
-        return Datatable::collection(Group::all())
-            ->showColumns('group_name')
-            ->searchColumns('group_name')
-            ->orderColumns('group_id','group_name','latest_update','status')
+        return Datatable::collection(Permission::all())
+            ->showColumns('permission_name')
+            ->searchColumns('permission_name')
+            ->orderColumns('permission_id','permission_name','latest_update','status')
             ->addColumn('status',function($item) {
                 return Monster::status($item->status);
             })
@@ -29,38 +29,38 @@ class GroupController extends \BackendController {
                 return $item->updated_at->diffForHumans();
             })
             ->addColumn('action',function($item) {
-                return '<a href="'.route('admin.group.edit',array($item->group_id)).'" class="btn-sm btn-primary"><i class="fa fa-edit"></i> '.Lang::get('monster.edit').'</a>';
+                return '<a href="'.route('admin.permission.edit',array($item->permission_id)).'" class="btn-sm btn-primary"><i class="fa fa-edit"></i> '.Lang::get('monster.edit').'</a>';
             })
             ->make();
     }
     public function getList() {
-        return View::make('group::admin.list');
+        return View::make('permission::admin.list');
     }
 
     public function getCreate() {
-        return View::make('group::admin.update');
+        return View::make('permission::admin.update');
     }
 
     public function getEdit($id) {
-        $group = Group::find($id);
-        return View::make('group::admin.update')->with('group',$group);
+        $Permission = Permission::find($id);
+        return View::make('permission::admin.update')->with('permission',$Permission);
     }
 
     public function postUpdate($id=false) {
         if($this->checkValidator($id)) {
-            $user = Group::firstOrNew(array('group_id'=>$id));
+            $user = Permission::firstOrNew(array('permission_id'=>$id));
             $user->fill(Input::all());
             $user->user_id = Auth::user()->user_id;
             $user->save();
-            return Redirect::route('admin.group.edit',array($user->group_id));
+            return Redirect::route('admin.permission.edit',array($user->permission_id));
         }
     }
 
     private function checkValidator($id=false) {
 
-        $rules = Group::$rules;
+        $rules = Permission::$rules;
         if($id) {
-            $rules['group_name'] = 'required|min:2|max:50|unique:groups,group_name,' .$id. ',group_id';
+            $rules['permission_name'] = 'required|min:2|max:50|unique:Permissions,permission_name,' .$id. ',permission_id';
         }
         $validator = Validator::make(Input::all(),$rules);
         if ($validator->passes()) {
@@ -70,10 +70,10 @@ class GroupController extends \BackendController {
         $messages = $validator->messages()->all('<p>:message</p>');
         Monster::set_message($messages,'error',true);
         if($id) { // if is editing
-            return Redirect::route('admin.group.edit',array($id));
+            return Redirect::route('admin.permission.edit',array($id));
         }
         else {
-            return Redirect::to(route('admin.group.create'))->withInput();
+            return Redirect::to(route('admin.permission.create'))->withInput();
         }
     }
 }

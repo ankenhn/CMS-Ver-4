@@ -19,5 +19,7 @@ return array(
     'pendingReview'=>  'Pending Review',
     'publish'       =>  'Publish',
     'unknown'       =>  'Unknown',
-    'latestUpdate'  =>  'Latest Update'
+    'latestUpdate'  =>  'Latest Update',
+    'updateSuccess' =>  'Update Success',
+    'order'         =>  'Order'
 );

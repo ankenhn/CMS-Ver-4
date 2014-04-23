@@ -1,7 +1,10 @@
 /* Set the defaults for DataTables initialisation */
 $.extend( true, $.fn.dataTable.defaults, {
-	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'T><'span6'p>>",
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'T><'span6'p>>",
 	"sPaginationType": "bootstrap",
+    "bJQueryUI": false,
+    "bAutoWidth": false,
+    "bServerSide": true,
 	"oLanguage": {
 		"sLengthMenu": "_MENU_ records per page",
         "sSearch"   :   ""
@@ -28,7 +31,6 @@ $.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
 		"iTotalPages":    Math.ceil( oSettings.fnRecordsDisplay() / oSettings._iDisplayLength )
 	};
 };
-
 
 /* Bootstrap style pagination control */
 $.extend( $.fn.dataTableExt.oPagination, {
