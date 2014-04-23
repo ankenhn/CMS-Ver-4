@@ -25,6 +25,9 @@ class GroupController extends \BackendController {
             ->addColumn('status',function($item) {
                 return Monster::status($item->status);
             })
+            ->addColumn('latest_update',function($item) {
+                return $item->updated_at->diffForHumans();
+            })
             ->addColumn('action',function($item) {
                 return '<a href="'.route('admin.group.edit',array($item->group_id)).'" class="btn-sm btn-primary"><i class="fa fa-edit"></i> '.Lang::get('monster.edit').'</a>';
             })
@@ -54,13 +57,15 @@ class GroupController extends \BackendController {
     }
 
     private function checkValidator($id=false) {
+
         $rules = Group::$rules;
         if($id) {
             $user = Group::find($id);
-            $rules['group_name'] = 'required|min:2|max:50|unique:groups,group_name,' .$user->group_name. ',group_id';
+            $rules['group_name'] = 'required|min:2|max:50|unique:groups,group_name,' .$id. ',group_id';
         }
         $validator = Validator::make(Input::all(),$rules);
         if ($validator->passes()) {
+            Monster::set_message('Update Success','success');
             return true;
         }
         $messages = $validator->messages()->all('<p>:message</p>');

@@ -119,6 +119,7 @@ return array(
 		'Creolab\LaravelModules\ServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
         'Chumper\Datatable\DatatableServiceProvider',
+        'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 	),
 
 	/*
@@ -186,6 +187,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
         'Monster'         =>  'Monster\Monster',
         'Datatable'       => 'Chumper\Datatable\Facades\DatatableFacade',
+        'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
 	),
 
 );

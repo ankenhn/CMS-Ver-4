@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label class="control-label col-xs-12"><span class="pull-left">{{ Lang::get('monster.status') }}</span></label>
                         <div class="col-xs-12">
-                            {{ Form::select('status',array('0'=>'Draft', '2' => 'Pending Review', '1'=> 'Publish'),Input::old('last_name', isset($user) ? $user->last_name : '' ), array('id' => 'status', 'class'=> 'form-control validate[required]')) }}
+                            {{ Form::select('status',array('0'=>Lang::get('monster.draft'), '2' => Lang::get('monster.pendingReview'), '1'=> Lang::get('monster.publish')),Input::old('last_name', isset($user) ? $user->last_name : '' ), array('id' => 'status', 'class'=> 'form-control validate[required]')) }}
 
                         </div>
                     </div>
@@ -62,7 +62,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary">{{ Lang::get('group::monster.save') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ Lang::get('monster.save') }}</button>
                             {{ HTML::link(route('admin.group.list'), Lang::get('monster.backToList'), array('class' => 'btn btn-default')) }}
                         </div>
                     </div>

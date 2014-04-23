@@ -32,6 +32,7 @@ return array(
 		'observers.php',
 		'filters.php',
 		'composers.php',
+        'breadcrumbs.php',
 		'routes.php',
 	),
 

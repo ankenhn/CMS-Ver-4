@@ -16,8 +16,8 @@ return array(
     'edit'          =>  'Edit',
     'addNew'        =>  'Add New',
     'draft'         =>  'Draft',
-    'pendingPreview'=>  'Pending Preview',
+    'pendingReview'=>  'Pending Review',
     'publish'       =>  'Publish',
-    'unknown'       =>  'Unknown'
-
+    'unknown'       =>  'Unknown',
+    'latestUpdate'  =>  'Latest Update'
 );

@@ -1992,7 +1992,7 @@ TableTools.prototype = {
 		}
 	},
 
-    "_KAction": function(method) {
+    "_KAction": function(method,oConfig) {
       $('.dataTables_processing').css('visibility','visible');
 	  var oSetDT = this.s.dt;
       var data = [];
@@ -2004,12 +2004,9 @@ TableTools.prototype = {
       $.ajax({
          type: 'post',
          data: { checked: data, action: method },
-         complete: function(res) {
+         complete: function() {
             $('.dataTables_processing').css('visibility','hidden');
-             for (var i=0;i<oTable.dataTableSettings.length;i++)
-             {
-                 oTable.oApi._fnReDraw(oTable.dataTableSettings[i]);
-             }
+             //oSetDT.nTable.oApi._fnReDraw(oTable.dataTableSettings[i]);
          }
       });
    }
@@ -2388,6 +2385,8 @@ TableTools.BUTTONS = {
 		"sButtonClass": "K_Delete",
 		"sButtonText": "Delete",
 		"fnClick": function ( nButton, oConfig ) {
+            var a = (oConfig);
+            console.log(a);
             if(!confirm("Are You Sure?")) return false;
 			this._KAction("Delete");
 		}

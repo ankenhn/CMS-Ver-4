@@ -1,7 +1,7 @@
 @extends('admin.main')
 
-
 @section('content')
+
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
@@ -19,7 +19,8 @@
                             <thead>
                             <tr>
                                 <th>{{Lang::get('group::monster.groupName')}}</th>
-                                <th style="width:10em;">{{Lang::get('status')}}</th>
+                                <th style="width:8em;">{{Lang::get('monster.status')}}</th>
+                                <th style="width:16em;">{{Lang::get('monster.latestUpdate')}}</th>
                                 <th style="width: 10em;"></th>
                             </tr>
                             </thead>
