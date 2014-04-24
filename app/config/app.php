@@ -119,6 +119,8 @@ return array(
 		'Creolab\LaravelModules\ServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
         'Chumper\Datatable\DatatableServiceProvider',
+
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	),
 
 	/*
