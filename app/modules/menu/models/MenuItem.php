@@ -35,10 +35,11 @@ class MenuItem extends \Eloquent {
         if(!empty($catalog)) {
             $str .= '<ol class="dd-list">';
             foreach($catalog as $var) {
-                $str .='<li class="dd-item" data-id="'.$var->menu_item_id.'">
-                        <div class="dd-handle"><a href="'.route('admin.menu.update.item').'">'.$var->menu_item_name.'</a></div>';
-                if(is_array($var->subCatalog)){
-                    $str .= self::buildListMenuItemHtml($menu_id,$var->subCatalog,$var->menu_item_parent_id);
+                $str .='<li class="dd-item dd3-item" data-id="'.$var->menu_item_id.'">
+                        <div class="dd-handle dd3-handle"></div>
+                        <div class="dd3-content"><a href="'.route('admin.menu.manager',array($var->menu_id,$var->menu_item_id)).'">'.$var->menu_item_name.'</a></div>';
+                if(!empty($var->items)){
+                    $str .= self::buildListMenuItemHtml($menu_id,$var->items,$var->menu_item_parent_id);
                 }
                 $str .='</li>';
             }
@@ -47,13 +48,18 @@ class MenuItem extends \Eloquent {
         return $str;
     }
 
-    public static function listOrder($menu_id, $id=0,$parent_id=0) {
-        $parent = self::orderBy('order')->where('menu_id','=',$menu_id)->where('menu_item_parent_id','=', $parent_id)->where('menu_item_id','!=',$id)->get();
+    public static function listOrder($menu_id, $id=0,$parent_id=0,$listAll=true) {
+        if(!$listAll) {
+            $parent = MenuItem::orderBy('order')->where('status',1)->where('menu_id','=',$menu_id)->where('menu_item_parent_id','=', $parent_id)->where('menu_item_id','!=',$id)->get();
+        }
+        else {
+            $parent = MenuItem::orderBy('order')->where('menu_id','=',$menu_id)->where('menu_item_parent_id','=', $parent_id)->where('menu_item_id','!=',$id)->get();
+        }
         $category = array();
         if(!empty($parent)) {
             foreach($parent as $key => $var) {
                 $category[$key] = $var;
-                $category[$key]->subCatalog = self::listOrder($menu_id, $id,$var->menu_item_id);
+                $category[$key]->items = self::listOrder($menu_id, $id,$var->menu_item_id,$listAll);
             }
         }
         return $category;

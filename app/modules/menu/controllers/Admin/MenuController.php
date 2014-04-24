@@ -1,5 +1,4 @@
 <?php namespace App\Modules\Menu\Controllers\Admin;
-
 use App\Modules\Menu\Models\MenuItem;
 use Auth, View, Lang, Monster, Datatable, Input, Validator, Session;
 use  App\Modules\Menu\Models\Menu;
@@ -54,7 +53,7 @@ class MenuController extends \BackendController {
     }
 
     public function postUpdate($id=false) {
-        if($this->checkValidator($id)) {
+        if($this->checkValidator()) {
             $menu = Menu::firstOrNew(array('menu_id'=>$id));
             $menu->fill(Input::all());
             $menu->user_id = Auth::user()->user_id;
@@ -66,16 +65,19 @@ class MenuController extends \BackendController {
             return Redirect::route('admin.menu.edit',array($id));
         }
         else {
-            return Redirect::to(route('admin.menu.create'))->withInput();
+            return Redirect::route('admin.menu.create')->withInput();
         }
     }
 
-    public function postUpdateItem($id=false,$item_id=false) {
-        if($this->checkItemValidator($id,$item_id)) {
+    public function postUpdateItem($id,$item_id=false) {
+        if($this->checkItemValidator()) {
+            if(Input::get('create')=='addNew') {
+                $item_id=false;
+            }
             $menuItem = MenuItem::firstOrNew(array('menu_item_id'=>$item_id));
             $menuItem->fill(Input::all());
             $menuItem->user_id = Auth::user()->user_id;
-            $menuItem->menu_id = Session::get('menu_id');
+            $menuItem->menu_id = $id;
             $menuItem->save();
             $item_id = $menuItem->menu_item_id;
             return Redirect::route('admin.menu.manager',array($id,$item_id))->withInput();
@@ -109,7 +111,7 @@ class MenuController extends \BackendController {
             }
         }
     }
-    private function checkItemValidator($id=false,$item_id=false) {
+    private function checkItemValidator() {
         $rules = MenuItem::$rules;
         $validator = Validator::make(Input::all(),$rules);
         if($validator->passes()) {
@@ -120,7 +122,7 @@ class MenuController extends \BackendController {
         Monster::set_message($messages,'error',true);
         return false;
     }
-    private function checkValidator($id=false) {
+    private function checkValidator() {
 
         $rules = Menu::$rules;
         $validator = Validator::make(Input::all(),$rules);

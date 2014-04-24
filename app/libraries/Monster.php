@@ -1,5 +1,6 @@
 <?php namespace Monster;
-use Illuminate\Support\Facades\Session, Config, Lang;
+use App\Modules\Menu\Models\MenuItem;
+use Illuminate\Support\Facades\Session, Config, Lang, System;
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com
@@ -51,5 +52,62 @@ class Monster {
         return $message;
     }
 
+    public static function AdminMenu($config = array()) {
+        $default = array(
+            'container'         =>  '',
+            'container_id'      =>  '',
+            'container_class'   =>  '',
+            'menu'              =>  'ul',
+            'menu_class'        =>  'sidebar-menu',
+            'menu_id'           =>  'nav-accordion',
+        );
+        $config = array_merge($default,$config);
+        $menuID = System::item('admin.menu');
+        $menus = MenuItem::listOrder($menuID,0,0,false);
+
+        return self::buildMenuHTML($menus,$config);
+    }
+
+    public static function Menu($menuID) {
+        return MenuItem::listOrder($menuID,0,0,false);
+    }
+
+    private static function buildMenuHTML($menus = array(),$config=array(),$depth =0) {
+        $menu = null;
+        if(!empty($menus)) {
+            $menu_class = $config['menu_class'];
+            if($depth!=0) {
+                $menu_id = $config['menu_id'].'_'.$depth;
+            }
+            else {
+                $menu_id = $config['menu_id'];
+            }
+
+            $menu = "<{$config['menu']} id='$menu_id' class='{$menu_class}'>";
+            if($config['menu']=='ul') {
+                $item_tag = 'li';
+            }
+            else {
+                $item_tag = 'div';
+            }
+            foreach($menus as $item) {
+                if(!empty($item->items)) {
+                    $item_class = 'class ="sub-menu dcjq-parent-li"';
+                }
+                else {
+                    $item_class = '';
+                }
+                $menu .= "<$item_tag $item_class>";
+                $menu .= "<a href='".url($item->menu_item_url)."'><i  class='fa ".$item->menu_item_class."'></i> $item->menu_item_name</a>";
+                    if(!empty($item->items)) {
+                        $config['menu_class'] = 'sub';
+                        $menu .= self::buildMenuHTML($item->items,$config,++$depth);
+                    }
+                $menu .= "</$item_tag>";
+            }
+            $menu .= "</{$config['menu']}>";
+        }
+        return $menu;
+    }
 
 }

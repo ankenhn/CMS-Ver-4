@@ -47,7 +47,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <button type="submit" class="btn btn-primary">{{ Lang::get('monster.save') }}</button>
+                                <button type="submit" name="save" class="btn btn-primary">{{ Lang::get('monster.save') }}</button>
+                                <button type="submit" name="create" value="addNew" class="btn btn-primary">{{ Lang::get('monster.addNew') }}</button>
                                 {{ HTML::link(route('admin.menu.list'), Lang::get('monster.backToList'), array('class' => 'btn btn-default')) }}
                             </div>
                         </div>

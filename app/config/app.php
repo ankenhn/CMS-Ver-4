@@ -186,6 +186,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
         'Monster'         => 'Monster\Monster',
         'Datatable'       => 'Chumper\Datatable\Facades\DatatableFacade',
+        'System'          => 'App\Modules\System\Models\System'
 	),
 
 );

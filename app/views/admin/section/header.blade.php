@@ -4,6 +4,7 @@
     <div class="brand">
         <div class="logo">
             <a href="" class="logo_link">
+                {{ System::item('site.title') }}
             </a>
         </div>
         <div class="sidebar-toggle-box">
@@ -20,7 +21,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="<?php //echo $userProfile->avatar; ?>">
-                    <span class="username"><?php //echo $userProfile->display_name; ?></span>
+                    <span class="username">{{ User::name(Auth::user()->user_id) }}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
@@ -30,7 +31,7 @@
                 </ul>
             </li>
             <li>
-                <div class="toggle-right-box hidden-xs" class="">
+                <div class="toggle-right-box hidden-xs">
                     <div class="fa fa-bars"></div>
                 </div>
             </li>
