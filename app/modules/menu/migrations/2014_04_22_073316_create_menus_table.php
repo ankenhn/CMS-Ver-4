@@ -30,6 +30,7 @@ class CreateMenusTable extends Migration {
                 $table->string('menu_item_class',50)->nulable();
                 $table->integer('menu_item_parent_id')->default(0);
                 $table->integer('menu_id');
+                $table->integer('order');
                 $table->integer('status');
                 $table->integer('user_id');
                 $table->timestamps();

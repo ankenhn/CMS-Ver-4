@@ -1,6 +1,7 @@
 <?php namespace App\Modules\Menu\Controllers\Admin;
 
-use Auth, View, Lang, Monster, Datatable, Input, Validator;
+use App\Modules\Menu\Models\MenuItem;
+use Auth, View, Lang, Monster, Datatable, Input, Validator, Session;
 use  App\Modules\Menu\Models\Menu;
 use Illuminate\Support\Facades\Redirect;
 
@@ -47,6 +48,11 @@ class MenuController extends \BackendController {
         return View::make('menu::admin.update')->with('menu',$menu);
     }
 
+    public function getManager($id,$item_id=false) {
+        $item = MenuItem::find($item_id);
+        return View::make('menu::admin.manager')->with('item',$item)->with('menuID',$id)->with('menuItemHtml',MenuItem::buildListMenuItemHtml($id));
+    }
+
     public function postUpdate($id=false) {
         if($this->checkValidator($id)) {
             $menu = Menu::firstOrNew(array('menu_id'=>$id));
@@ -55,8 +61,65 @@ class MenuController extends \BackendController {
             $menu->save();
             return Redirect::route('admin.menu.edit',array($menu->menu_id));
         }
+
+        if($id) { // if is editing
+            return Redirect::route('admin.menu.edit',array($id));
+        }
+        else {
+            return Redirect::to(route('admin.menu.create'))->withInput();
+        }
     }
 
+    public function postUpdateItem($id=false,$item_id=false) {
+        if($this->checkItemValidator($id,$item_id)) {
+            $menuItem = MenuItem::firstOrNew(array('menu_item_id'=>$item_id));
+            $menuItem->fill(Input::all());
+            $menuItem->user_id = Auth::user()->user_id;
+            $menuItem->menu_id = Session::get('menu_id');
+            $menuItem->save();
+            $item_id = $menuItem->menu_item_id;
+            return Redirect::route('admin.menu.manager',array($id,$item_id))->withInput();
+        }
+
+        if($item_id) { // if is editing
+            return Redirect::route('admin.menu.manager',array($id,$item_id))->withInput();
+        }
+        else {
+            return Redirect::route('admin.menu.manager',array($id))->withInput();
+        }
+    }
+
+    public function postOrderItem() {
+        $data = Input::get('menu');
+        $this->doSorting($data);
+    }
+
+    private function doSorting($data,$parent_id=0) {
+        if(!empty($data)) {
+            $i=0;
+            foreach($data as $item) {
+                ++$i;
+                $menuItem = MenuItem::find($item['id']);
+                $menuItem->order = $i;
+                $menuItem->menu_item_parent_id = $parent_id;
+                $menuItem->save();
+                if(isset($item['children'])) {
+                    $this->doSorting($item['children'],$item['id']);
+                }
+            }
+        }
+    }
+    private function checkItemValidator($id=false,$item_id=false) {
+        $rules = MenuItem::$rules;
+        $validator = Validator::make(Input::all(),$rules);
+        if($validator->passes()) {
+            Monster::set_message(Lang::get('monster.updateSuccess'),'success');
+            return true;
+        }
+        $messages = $validator->messages()->all('<p>:message</p>');
+        Monster::set_message($messages,'error',true);
+        return false;
+    }
     private function checkValidator($id=false) {
 
         $rules = Menu::$rules;
@@ -67,15 +130,7 @@ class MenuController extends \BackendController {
         }
         $messages = $validator->messages()->all('<p>:message</p>');
         Monster::set_message($messages,'error',true);
-        if($id) { // if is editing
-            return Redirect::route('admin.menu.edit',array($id));
-        }
-        else {
-            return Redirect::to(route('admin.menu.create'))->withInput();
-        }
+        return false;
     }
 
-    public function getManager($id) {
-        return View::make('menu::admin.manager');
-    }
 }

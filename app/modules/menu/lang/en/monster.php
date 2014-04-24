@@ -10,5 +10,9 @@
 return array(
     'moduleManager'    =>  'Menu Manager ',
     'menuName'   =>  'Menu Name',
-    'manager'   =>  'Menu Manager'
+    'manager'   =>  'Menu Manager',
+    'name'      =>  'Name',
+    'url'       =>  'URL',
+    'class'     =>  'Class',
+    'target'    =>  'Target'
 );

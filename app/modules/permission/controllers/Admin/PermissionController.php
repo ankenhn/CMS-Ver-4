@@ -54,6 +54,13 @@ class PermissionController extends \BackendController {
             $user->save();
             return Redirect::route('admin.permission.edit',array($user->permission_id));
         }
+
+        if($id) { // if is editing
+            return Redirect::route('admin.permission.edit',array($id));
+        }
+        else {
+            return Redirect::to(route('admin.permission.create'))->withInput();
+        }
     }
 
     private function checkValidator($id=false) {
@@ -69,11 +76,6 @@ class PermissionController extends \BackendController {
         }
         $messages = $validator->messages()->all('<p>:message</p>');
         Monster::set_message($messages,'error',true);
-        if($id) { // if is editing
-            return Redirect::route('admin.permission.edit',array($id));
-        }
-        else {
-            return Redirect::to(route('admin.permission.create'))->withInput();
-        }
+        return false;
     }
 }
