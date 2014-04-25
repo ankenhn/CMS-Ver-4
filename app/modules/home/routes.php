@@ -12,6 +12,5 @@ Route::get('/',function() {
 
 Route::group(array('prefix'=>'admin'),function() {
     Route::get('/',function() {
-        return 'home manager';
     });
 });

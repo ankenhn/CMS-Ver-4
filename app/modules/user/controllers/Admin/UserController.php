@@ -1,6 +1,5 @@
 <?php namespace App\Modules\User\Controllers\Admin;
-use Monster\Monster;
-use View, Validator, Input, Session;
+use View, Validator, Input;
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com

@@ -23,60 +23,67 @@ class DatabaseSeeder extends \Seeder {
             'menu_item_name'    =>  'Dashboard',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-home',
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Users',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-user',
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Groups',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-group',
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Groups',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-group',
-            'menu_item_parent_id'=> 3,
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_item_parent_id'=> '3',
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Permissions',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-home',
-            'menu_item_parent_id'=> 3,
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_item_parent_id'=> '3',
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Menu',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-list',
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Theme Options',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-tachometer',
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
-        ),array(
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
+        ));
+        MenuItem::create(array(
             'menu_item_name'    =>  'Settings',
             'menu_item_url'     =>  '/admin',
             'menu_item_class'   =>  'fa-gears',
-            'menu_id'           =>  1,
-            'status'            =>  1,
-            'user_id'           =>  1
+            'menu_id'           =>  '1',
+            'status'            =>  '1',
+            'user_id'           =>  '1'
         ));
     }
 }

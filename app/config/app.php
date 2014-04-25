@@ -151,7 +151,7 @@ return array(
 
         'App'             => 'Illuminate\Support\Facades\App',
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
-		'Auth'            => 'Illuminate\Support\Facades\Auth',
+		'Auth'            => 'App\Modules\User\Libraries\Auth',
 		'Blade'           => 'Illuminate\Support\Facades\Blade',
 		'Cache'           => 'Illuminate\Support\Facades\Cache',
 		'ClassLoader'     => 'Illuminate\Support\ClassLoader',

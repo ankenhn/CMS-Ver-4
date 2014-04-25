@@ -24,5 +24,4 @@ class Group extends \Eloquent {
         'status'=>'required|integer',
     );
 
-
 }

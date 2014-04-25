@@ -1,6 +1,6 @@
 <?php namespace App\Modules\User\Controllers;
-use App, View, Input, Auth, Monster;
-use Illuminate\Support\Facades\Redirect, Hash;
+use View, Input, Auth, Monster;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * Author: Keith
