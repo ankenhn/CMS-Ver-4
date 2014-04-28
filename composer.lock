@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "13fc8d024da436f5c2533adbba6b3878",
+    "hash": "c1b3f47fcfebae1d7c2da130c0c1a7d5",
     "packages": [
         {
             "name": "chumper/datatable",

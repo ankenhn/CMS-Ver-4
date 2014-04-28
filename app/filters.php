@@ -54,6 +54,12 @@ Route::filter('auth.basic', function()
 | response will be issued if they are, which you may freely change.
 |
 */
+Route::filter('auth.admin',function() {
+    if(!Auth::hasPermission(Config::get('monster.permissionViewAdmin'))) {
+        Monster::set_message(Lang::get('monster.youDontHavePermissionToViewThatPage'),'warning');
+        return Redirect::route('login');
+    }
+});
 
 Route::filter('guest', function()
 {

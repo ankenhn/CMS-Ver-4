@@ -1,4 +1,6 @@
 <?php namespace App\Modules\Menu\Models;
+use Illuminate\Support\Facades\Request;
+
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com
@@ -11,7 +13,7 @@ class MenuItem extends \Eloquent {
 
     protected $table = 'menu_items';
     protected $primaryKey = 'menu_item_id';
-    protected $fillable = array('menu_item_name','menu_item_url','menu_item_target','menu_item_class','status');
+    protected $fillable = array('menu_item_name','menu_item_url','menu_item_target','menu_item_class','menu_id','menu_item_parent_id','status');
 
     protected $softDelete = true;
 
@@ -57,9 +59,35 @@ class MenuItem extends \Eloquent {
         }
         $category = array();
         if(!empty($parent)) {
+            $module = Request::segment(1).'/'.Request::segment(2);
             foreach($parent as $key => $var) {
                 $category[$key] = $var;
                 $category[$key]->items = self::listOrder($menu_id, $id,$var->menu_item_id,$listAll);
+                if(strpos($var->menu_item_url,$module)!==false) {
+                    $active = true;
+                }
+                else {
+                    $active = false;
+                }
+                if(!empty($category[$key]->items) AND $active==false) {
+                    foreach($category[$key]->items as $item) {
+                        if(strpos($item->menu_item_url,$module)!==false) {
+                            $active = true;
+                        }
+                        else {
+                            $active = false;
+                        }
+                    }
+                }
+                if(Request::segment(2)=='') {
+                    if($parent_id==0 AND $key==0) {
+                        $active=true;
+                    }
+                    else {
+                        $active=false;
+                    }
+                }
+                $category[$key]->active = $active;
             }
         }
         return $category;

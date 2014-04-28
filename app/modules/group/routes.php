@@ -6,7 +6,7 @@
  * Time: 1:32 PM
  */
 
-Route::group(array('prefix'=>'admin','namespace'=>'App\\Modules\\Group\\Controllers\\Admin'),function() {
+Route::group(array('prefix'=>'admin', 'before'=>'auth.admin','namespace'=>'App\\Modules\\Group\\Controllers\\Admin'),function() {
 
     Route::get('group',               array('as'   =>  'admin.group.list',        'uses'  =>  'GroupController@getList'));
     Route::get('group/dataTable',     array('as'   =>  'admin.group.dataTable',   'uses'  =>  'GroupController@getDataTable'));

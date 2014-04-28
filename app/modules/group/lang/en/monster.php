@@ -10,4 +10,5 @@
 return array(
     'moduleManager'    =>  'Group Manager ',
     'groupName'   =>  'Group Name',
+    'permissionManager' =>  'Permission Manager'
 );

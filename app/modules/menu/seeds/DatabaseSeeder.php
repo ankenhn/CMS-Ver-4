@@ -29,7 +29,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Users',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/user',
             'menu_item_class'   =>  'fa-user',
             'menu_id'           =>  '1',
             'status'            =>  '1',
@@ -37,7 +37,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Groups',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/group',
             'menu_item_class'   =>  'fa-group',
             'menu_id'           =>  '1',
             'status'            =>  '1',
@@ -45,7 +45,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Groups',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/group',
             'menu_item_class'   =>  'fa-group',
             'menu_item_parent_id'=> '3',
             'menu_id'           =>  '1',
@@ -54,7 +54,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Permissions',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/permission',
             'menu_item_class'   =>  'fa-home',
             'menu_item_parent_id'=> '3',
             'menu_id'           =>  '1',
@@ -63,7 +63,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Menu',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/menu',
             'menu_item_class'   =>  'fa-list',
             'menu_id'           =>  '1',
             'status'            =>  '1',
@@ -71,7 +71,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Theme Options',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/options',
             'menu_item_class'   =>  'fa-tachometer',
             'menu_id'           =>  '1',
             'status'            =>  '1',
@@ -79,7 +79,7 @@ class DatabaseSeeder extends \Seeder {
         ));
         MenuItem::create(array(
             'menu_item_name'    =>  'Settings',
-            'menu_item_url'     =>  '/admin',
+            'menu_item_url'     =>  '/admin/system',
             'menu_item_class'   =>  'fa-gears',
             'menu_id'           =>  '1',
             'status'            =>  '1',

@@ -1,5 +1,7 @@
 <?php namespace Monster;
 use App\Modules\Menu\Models\MenuItem;
+use Menu\Menu;
+use Request;
 use Illuminate\Support\Facades\Session, Config, Lang, System;
 /**
  * Author: Keith
@@ -61,6 +63,7 @@ class Monster {
             'menu_class'        =>  'sidebar-menu',
             'menu_id'           =>  'nav-accordion',
         );
+
         $config = array_merge($default,$config);
         $menuID = System::item('admin.menu');
         $menus = MenuItem::listOrder($menuID,0,0,false);
@@ -91,14 +94,21 @@ class Monster {
                 $item_tag = 'div';
             }
             foreach($menus as $item) {
-                if(!empty($item->items)) {
-                    $item_class = 'class ="sub-menu dcjq-parent-li"';
+                if($item->active==true) {
+                    $class = ' active';
                 }
                 else {
-                    $item_class = '';
+                    $class = null;
+                }
+                if(!empty($item->items)) {
+                    $item_class = 'class ="sub-menu dcjq-parent-li'.$class.'"';
+                }
+                else {
+                    $item_class = 'class="'.$class.'"';
                 }
                 $menu .= "<$item_tag $item_class>";
-                $menu .= "<a href='".url($item->menu_item_url)."'><i  class='fa ".$item->menu_item_class."'></i> $item->menu_item_name</a>";
+
+                $menu .= "<a href='".url($item->menu_item_url)."' class='dcjq-parent".$class."'><i  class='fa ".$item->menu_item_class."'></i> $item->menu_item_name</a>";
                     if(!empty($item->items)) {
                         $config['menu_class'] = 'sub';
                         $menu .= self::buildMenuHTML($item->items,$config,++$depth);
@@ -108,6 +118,37 @@ class Monster {
             $menu .= "</{$config['menu']}>";
         }
         return $menu;
+    }
+
+    public static function breadcrumb() {
+        $str = '<ul class="breadcrumbs-alt">';
+        $Segments = Request::segments();
+        $totalSegments = count($Segments);
+        if(!empty($Segments)) {
+            $k=0;
+            foreach($Segments as $segment) {
+                ++$k;
+                if($k==1) {
+                    if($totalSegments==1) {
+                        $str .='<li><a href="#" class="current"><i class="fa fa-home">&nbsp;</i> Dashboard</a></li>';
+                    }
+                    else {
+                        $str .='<li><a href="'.route('admin.dashboard').'"><i class="fa fa-home">&nbsp;</i> Dashboard</a></li>';
+                    }
+                }
+                else if($k>3) {
+                    break;
+                }
+                else if($k==$totalSegments || $k==3) {
+                    $str .='<li><a class="current" href="">'.ucfirst($segment).'</a></li>';
+                }
+                elseif($k>1) {
+                    $str .='<li><a href="'.route('admin.dashboard').'/'.$segment.'">'.ucfirst($segment).'</a></li>';
+                }
+            }
+        }
+        $str .='</ul>';
+        return $str;
     }
 
 }

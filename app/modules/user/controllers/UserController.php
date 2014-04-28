@@ -20,7 +20,7 @@ class UserController extends \FrontendController {
     }
     public function postLogin() {
         if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'status'=>1),true)) {
-            return Redirect::to('admin');
+            return Redirect::route('admin.user.list');
         }
         Monster::set_message('Email or password incorrect','error');
         return Redirect::to('login');

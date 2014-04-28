@@ -11,8 +11,8 @@ class System extends \Eloquent {
 
     protected $table = 'system';
     protected $primaryKey = 'key';
-    protected $fillable = array('value');
-
+    protected $fillable = array('key','value');
+    public $timestamps=false;
     public static $rules = array(
         'key'=>'required|min:2|max:50|unique:system',
         'value'    =>  'required|min:8',

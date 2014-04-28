@@ -1499,7 +1499,7 @@ namespace {
 		 }
 
 	}
-	class Auth extends \Illuminate\Support\Facades\Auth{
+	class Auth extends \App\Modules\User\Libraries\Auth{
 		/**
 		 * Create an instance of the database driver.
 		 *

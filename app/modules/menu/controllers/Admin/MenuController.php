@@ -1,6 +1,6 @@
 <?php namespace App\Modules\Menu\Controllers\Admin;
 use App\Modules\Menu\Models\MenuItem;
-use Auth, View, Lang, Monster, Datatable, Input, Validator, Session;
+use Auth, View, Lang, Monster, Datatable, Input, Validator;
 use  App\Modules\Menu\Models\Menu;
 use Illuminate\Support\Facades\Redirect;
 

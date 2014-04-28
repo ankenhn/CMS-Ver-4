@@ -3,6 +3,7 @@
 use Auth, View, Lang, Monster, Datatable, Input, Validator;
 use  App\Modules\Group\Models\Group;
 use Illuminate\Support\Facades\Redirect;
+use Menu\Menu;
 
 /**
  * Author: Keith
@@ -43,7 +44,44 @@ class GroupController extends \BackendController {
 
     public function getEdit($id) {
         $group = Group::find($id);
-        return View::make('group::admin.update')->with('group',$group);
+        $permissions_full = $group->permissions;
+        $group_permissions = $group->group_permissions;
+        $template = array();
+
+        foreach ($permissions_full as $key => $perm) {
+            $template[$perm->permission_name]['perm_id'] = $perm->permission_id;
+            $template[$perm->permission_name]['value'] = 0;
+            if(isset($group_permissions[$perm->permission_id]) )
+            {
+                $template[$perm->permission_name]['value'] = 1;
+            }
+        }
+
+        $domains = array();
+        foreach ($template as $key => $value) {
+            list($domain, $name, $action) = explode('.', $key);
+            if (!empty($domain) && !array_key_exists($domain, $domains)) {
+                $domains[$domain] = array();
+            }
+            if (!isset($domains[$domain][$name])) {
+                $domains[$domain][$name] = array(
+                    $action => $value
+                );
+            }
+            else {
+                $domains[$domain][$name][$action] = $value;
+            }
+
+            // Store the actions separately for building the table header
+            if (!isset($domains[$domain]['actions'])) {
+                $domains[$domain]['actions'] = array();
+            }
+
+            if (!in_array($action, $domains[$domain]['actions'])) {
+                $domains[$domain]['actions'][] = $action;
+            }
+        }//end foreach
+        return View::make('group::admin.update')->with('group',$group)->with('domains',$domains);
     }
 
     public function postUpdate($id=false) {
@@ -52,6 +90,10 @@ class GroupController extends \BackendController {
             $user->fill(Input::all());
             $user->user_id = Auth::user()->user_id;
             $user->save();
+
+            if(Auth::HasPermission("")) {
+                $user->set_group_permission($id,Input::get('group_permissions'));
+            }
             return Redirect::route('admin.group.edit',array($user->group_id));
         }
 

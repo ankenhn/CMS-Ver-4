@@ -21,5 +21,12 @@ return array(
     'unknown'       =>  'Unknown',
     'latestUpdate'  =>  'Latest Update',
     'updateSuccess' =>  'Update Success',
-    'order'         =>  'Order'
+    'order'         =>  'Order',
+    'youDontHavePermissionToViewThatPage'  =>  'You don\'t have permission to view that page',
+
+    /*** USER ****/
+    'firstName'     =>  'First Name',
+    'lastName'      =>  'Last Name',
+    'email'         =>  'Email',
+    'lastLogin'     =>  'Last Login',
 );

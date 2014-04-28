@@ -7,5 +7,6 @@
  */
 
 return array(
-    'admin' =>  'admin'
+    'admin'                 =>  'admin',
+    'permissionViewAdmin'   =>  'Website.Backend.Login'
 );

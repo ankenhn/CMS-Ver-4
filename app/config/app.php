@@ -121,6 +121,7 @@ return array(
         'Chumper\Datatable\DatatableServiceProvider',
 
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+
 	),
 
 	/*
@@ -188,7 +189,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
         'Monster'         => 'Monster\Monster',
         'Datatable'       => 'Chumper\Datatable\Facades\DatatableFacade',
-        'System'          => 'App\Modules\System\Models\System'
+        'System'          => 'App\Modules\System\Models\System',
+        'User'            => 'App\Modules\USer\Models\User',
 	),
 
 );

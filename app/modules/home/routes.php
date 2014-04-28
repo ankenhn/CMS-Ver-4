@@ -10,7 +10,6 @@ Route::get('/',function() {
     return Redirect::to('login');
 });
 
-Route::group(array('prefix'=>'admin'),function() {
-    Route::get('/',function() {
-    });
+Route::group(array('prefix'=>'admin','before'=>'auth.admin','namespace'=>'App\\Modules\\Home\\Controllers\\Admin'),function() {
+    Route::get('/',array('as'=>'admin.dashboard' , 'uses' =>  'HomeController@getDashboard'));
 });

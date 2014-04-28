@@ -26,19 +26,6 @@
     {{ HTML::script('backend/js/jquery-migrate-1.2.1.min.js') }}
     {{ HTML::script('assets/plugin/bootstrap/bootstrap.min.js') }}
 
-    <script type="text/javascript">
-        function set_select(id,value)
-        {
-            var obj=document.getElementById(id);
-            if(obj) {
-                for(i=0;i<obj.length;i++) {
-                    if(obj[i].value==value)
-                        obj.selectedIndex=i;
-                }
-
-            }
-        }
-    </script>
 </head>
 
 <body>
@@ -50,10 +37,7 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-md-8 col-xs-12">
-                    <ul class="breadcrumbs-alt">
-                        <li><a href=""><i class="fa fa-home">&nbsp;</i> Dashboard</a></li>
-                        <li><a class="current" href="">Users</a></li>
-                    </ul>
+                    {{ Monster::breadcrumb() }}
                 </div>
             </div>
             <!-- page start-->

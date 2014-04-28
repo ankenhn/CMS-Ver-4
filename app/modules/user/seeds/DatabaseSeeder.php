@@ -1,6 +1,6 @@
 <?php namespace App\Modules\User\Seeds;
 use Illuminate\Support\Facades\Hash;
-use User;
+use App\Modules\User\Models\User;
 /**
  * Author: Keith
  * Email: duyanh980@gmail.com

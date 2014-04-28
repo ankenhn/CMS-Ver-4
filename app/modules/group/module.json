@@ -1,3 +1,6 @@
 {
-    "enabled": true
+    "enabled"   :   true,
+    "order"     :   2,
+
+    "seeder": "App\\Modules\\Group\\Seeds\\DatabaseSeeder"
 }

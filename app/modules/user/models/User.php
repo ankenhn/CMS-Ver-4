@@ -2,6 +2,7 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Support\Facades\HTML;
 
 
 class User extends \Eloquent implements UserInterface, RemindableInterface {
@@ -19,7 +20,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-    protected $hidden = array('first_name', 'last_name', 'email', 'password', 'birthday', 'avatar','group_id');
+    protected $fillable = array('first_name', 'last_name', 'email', 'password', 'birthday', 'avatar','group_id','last_login');
 
     public static $rules = array(
         'first_name'=>'required|alpha|min:2|max:50',

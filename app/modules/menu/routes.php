@@ -6,7 +6,7 @@
  * Time: 1:32 PM
  */
 
-Route::group(array('prefix'=>'admin','namespace'=>'App\\Modules\\Menu\\Controllers\\Admin'),function() {
+Route::group(array('prefix'=>'admin', 'before'=>'auth.admin','namespace'=>'App\\Modules\\Menu\\Controllers\\Admin'),function() {
     Route::pattern('id', '[0-9]+');
     Route::get('menu',               array('as'   =>  'admin.menu.list',        'uses'  =>  'MenuController@getList'));
     Route::get('menu/dataTable',     array('as'   =>  'admin.menu.dataTable',   'uses'  =>  'MenuController@getDataTable'));

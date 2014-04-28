@@ -1,4 +1,7 @@
 {
-	"enabled": true,
+	"enabled"   :   true,
+    "order"     :   1,
+
+    "seeder": "App\\Modules\\User\\Seeds\\DatabaseSeeder",
 	"provider": "App\\Modules\\User\\AuthServiceProvider"
 }

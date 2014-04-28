@@ -7,13 +7,10 @@
 
 <div class="row">
     <div class="col-lg-8">
-        <div class="panel">
-            <section class="panel-heading">
+        <section class="panel">
+            <header class="panel-heading">
                 User Manager
-                <span class="tools pull-right">
-                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                </span>
-            </section>
+            </header>
             <div class="panel-body">
                 <div class="form">
                     <div class="form-horizontal">
@@ -56,18 +53,15 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <div class="col-lg-4">
 
-        <div class="panel">
-            <section class="panel-heading">
+        <section class="panel">
+            <header class="panel-heading">
                 Publish
-                <span class="tools pull-right">
-                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                </span>
-            </section>
+            </header>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -106,15 +100,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="panel">
-            <section class="panel-heading">
+        <section class="panel">
+            <header class="panel-heading">
                 Avatar
-                <span class="tools pull-right">
-                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                </span>
-            </section>
+            </header>
             <div class="panel-body">
                 <div class="form-horizontal">
                     <div class="form-group">
@@ -140,7 +131,7 @@
 
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>
 {{ Form::close() }}

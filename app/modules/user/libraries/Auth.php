@@ -2,6 +2,8 @@
 use App\Modules\Group\Models\Group;
 use App\Modules\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 
 /**
@@ -24,5 +26,11 @@ class Auth extends \Illuminate\Support\Facades\Auth {
             return true;
         }
         return false;
+    }
+
+    public static function Restrict($permission) {
+        if(!self::HasPermission($permission)) {
+            return Redirect::to(URL::previous());
+        }
     }
 }
